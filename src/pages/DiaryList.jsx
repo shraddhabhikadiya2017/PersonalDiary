@@ -6,9 +6,14 @@ const DiaryList = ({ refreshFlag, onRemove }) => {
 
   useEffect(() => {
     const storedEntries = JSON.parse(localStorage.getItem("Entries")) || [];
-    setEntries(storedEntries);
+  
+    const sortedEntries = storedEntries.sort((a, b) =>
+      new Date(b.date) - new Date(a.date)
+    );
+  
+    setEntries(sortedEntries);
   }, [refreshFlag]);
-
+  
   const handleRemove = (date) => {
     const updatedEntries = entries.filter((entry) => entry.date !== date);
     localStorage.setItem("Entries", JSON.stringify(updatedEntries));
