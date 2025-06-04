@@ -6,14 +6,14 @@ const DiaryList = ({ refreshFlag, onRemove }) => {
 
   useEffect(() => {
     const storedEntries = JSON.parse(localStorage.getItem("Entries")) || [];
-  
-    const sortedEntries = storedEntries.sort((a, b) =>
-      new Date(b.date) - new Date(a.date)
+
+    const sortedEntries = storedEntries.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
     );
-  
+
     setEntries(sortedEntries);
   }, [refreshFlag]);
-  
+
   const handleRemove = (date) => {
     const updatedEntries = entries.filter((entry) => entry.date !== date);
     localStorage.setItem("Entries", JSON.stringify(updatedEntries));
@@ -81,11 +81,14 @@ const DiaryList = ({ refreshFlag, onRemove }) => {
       )}
 
       {selectedEntry && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.20)" }}
+        >
           <div className="bg-white rounded-xl shadow-2xl max-w-xl w-full p-6 relative max-h-[90vh] flex flex-col">
             <button
               onClick={() => setSelectedEntry(null)}
-              className="absolute top-2 right-3 text-2xl text-gray-600 hover:text-black"
+              className="absolute top-2 right-3 text-3xl font-bold text-gray-600 hover:text-black cursor-pointer"
             >
               &times;
             </button>

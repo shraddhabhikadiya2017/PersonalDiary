@@ -47,16 +47,19 @@ const AddEntryModal = ({ onEntryAdded }) => {
     <div className="p-6 bg-white">
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-blue-300 text-blue-900 px-4 py-2 rounded hover:bg-white w-full font-bold text-lg"
+        className="bg-blue-300 text-blue-900 px-4 py-2 rounded hover:bg-blue-200 w-full font-bold text-lg cursor-pointer"
       >
         Add New Diary
       </button>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div
+          className="fixed inset-0 backdrop-blur-sm flex justify-center items-center z-50"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.20)" }}
+        >
           <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md relative">
             <button
-              className="absolute top-2 right-3 text-2xl text-gray-600 hover:text-black"
+              className="absolute top-2 right-3 text-3xl font-bold text-gray-600 hover:text-black cursor-pointer"
               onClick={() => setIsModalOpen(false)}
             >
               &times;
